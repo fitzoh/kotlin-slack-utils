@@ -1,0 +1,45 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm" version "1.2.41"
+    id("com.jfrog.bintray") version "1.7.3"
+}
+apply plugin: "maven"
+apply plugin: "maven-publish"
+apply plugin: "java-library"
+
+
+group = "com.github.fitzoh"
+version = "0.0.1"
+
+repositories {
+    jcenter()
+}
+
+
+dependencies {
+    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.8.7")
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41")
+    testCompile("junit:junit:4.12")
+    testCompile("org.assertj:assertj-core:3.6.2")
+}
+
+bintray {
+    user = "fitzoh"
+    key = project.findProperty("BINTRAY_KEY")
+    publish = true
+    publications = ["jCenter"]
+    pkg{
+        repo = "maven"
+        name = "kotlin-slack-utils"
+        userOrg = "fitzoh"
+        vcsUrl = "https://github.com/Fitzoh/kotlin-slack-utils"
+        licenses = ["Apache-2.0"]
+    }
+}
+
+publishing {
+    publications {
+        jCenter(MavenPublication){
+            from components.java
+        }
+    }
+}

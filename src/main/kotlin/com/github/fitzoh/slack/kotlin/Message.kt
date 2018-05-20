@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 
+
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
 data class Message(
         var text: String? = null,
@@ -14,7 +15,7 @@ data class Message(
     fun attachment(init: Attachment.() -> Unit) = attachments.add(Attachment().apply(init))
 
     companion object {
-        fun message(init: Message.() -> Unit) = Message().apply(init)
+        fun create(init: Message.() -> Unit) = Message().apply(init)
     }
 
 
@@ -43,7 +44,7 @@ data class Message(
     @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
     data class Field(
             var title: String? = null,
-            var varue: String? = null,
+            var value: String? = null,
             var short: Boolean? = null)
 }
 

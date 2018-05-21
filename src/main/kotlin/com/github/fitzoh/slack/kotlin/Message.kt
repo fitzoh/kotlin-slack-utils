@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
 data class Message(
         var text: String? = null,
         var markdown: Boolean? = null,
+        var asUser: Boolean? = null,
+        var channel: String? = null,
         @JsonInclude(JsonInclude.Include.NON_EMPTY)
         val attachments: MutableList<Attachment> = mutableListOf()) {
 
